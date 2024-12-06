@@ -1,6 +1,6 @@
 [package]
 name = "rustybuddy"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Krish Maity <ktshacx@gmail.com>"]
 description = "A CLI-based pet simulation game written in Rust."
 homepage = "https://github.com/ktshacx/rustybuddy"

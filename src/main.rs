@@ -1,5 +1,5 @@
 use clap::{Parser, Subcommand};
-use crossterm::{cursor, execute, style::Print};
+use crossterm::{cursor, execute, style::Print, terminal};
 use serde::{Deserialize, Serialize};
 use std::{
     fs,
@@ -60,13 +60,16 @@ impl Pet {
     }
 
     fn feed(&mut self) {
+        clear_screen(); // Clear terminal before action
         self.hunger = (self.hunger - 10).max(0);
         println!("{} is happily munching on food!", self.name);
         self.show_animation("eating");
         self.check_mood();
+        print_separator();
     }
 
     fn play(&mut self) {
+        clear_screen(); // Clear terminal before action
         if self.energy >= 10 {
             self.happiness = (self.happiness + 15).min(100);
             self.energy -= 10;
@@ -76,14 +79,17 @@ impl Pet {
             println!("{} is too tired to play. Try letting them rest.", self.name);
         }
         self.check_mood();
+        print_separator();
     }
 
     fn sleep(&mut self) {
+        clear_screen(); // Clear terminal before action
         self.energy = (self.energy + 20).min(100);
         self.hunger = (self.hunger + 5).min(100); // Sleeping makes them a bit hungry.
         println!("{} is peacefully sleeping. Sweet dreams!", self.name);
         self.show_animation("sleeping");
         self.check_mood();
+        print_separator();
     }
 
     fn age_up(&mut self) {
@@ -111,6 +117,7 @@ impl Pet {
     }
 
     fn show_stats(&self) {
+        clear_screen(); // Clear terminal before showing stats
         println!(
             "Pet: {}\nKind: {}\nAge: {}\nHunger: {}\nHappiness: {}\nEnergy: {}\nHealth: {}\nMood: {}\n",
             self.name,
@@ -122,6 +129,7 @@ impl Pet {
             self.health,
             self.get_mood()
         );
+        print_separator();
     }
 
     fn get_mood(&self) -> &str {
@@ -155,6 +163,7 @@ impl Pet {
         for frame in frames {
             execute!(stdout, cursor::MoveTo(0, 6), Print(frame)).unwrap();
             thread::sleep(Duration::from_millis(400));
+            execute!(stdout, terminal::Clear(terminal::ClearType::CurrentLine)).unwrap(); // Clear animation frame
         }
         execute!(stdout, cursor::MoveToNextLine(2)).unwrap();
     }
@@ -176,6 +185,14 @@ fn save_pet(pet: &Pet, file_path: &str) {
     } else {
         println!("Failed to serialize pet data!");
     }
+}
+
+fn clear_screen() {
+    execute!(stdout(), terminal::Clear(terminal::ClearType::All), cursor::MoveTo(0, 0)).unwrap();
+}
+
+fn print_separator() {
+    println!("------------------------------------");
 }
 
 fn main() {

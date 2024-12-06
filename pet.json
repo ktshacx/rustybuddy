@@ -1,13 +1,13 @@
 {
-  "name": "Tommy",
-  "kind": "Cat",
-  "hunger": 35,
-  "happiness": 80,
-  "energy": 90,
+  "name": "Fluffy",
+  "kind": "Dragon",
+  "hunger": 45,
+  "happiness": 50,
+  "energy": 70,
   "health": 100,
   "age": 0,
   "last_update": {
-    "secs_since_epoch": 1733475066,
-    "nanos_since_epoch": 36123500
+    "secs_since_epoch": 1733476752,
+    "nanos_since_epoch": 308301600
   }
 }
