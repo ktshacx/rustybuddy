@@ -1,0 +1,13 @@
+{
+  "name": "Tommy",
+  "kind": "Cat",
+  "hunger": 35,
+  "happiness": 80,
+  "energy": 90,
+  "health": 100,
+  "age": 0,
+  "last_update": {
+    "secs_since_epoch": 1733475066,
+    "nanos_since_epoch": 36123500
+  }
+}
