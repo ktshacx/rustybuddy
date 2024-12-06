@@ -125,5 +125,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 Created with ❤️ by [Krish Maity](https://github.com/ktshacx).
 
 ---
-
-Let me know if you'd like any modifications!
